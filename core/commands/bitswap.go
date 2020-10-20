@@ -54,6 +54,7 @@ Print out all blocks currently on the bitswap wantlist for the local peer.`,
 		}
 
 		bs, ok := nd.Exchange.(*bitswap.Bitswap)
+		fmt.Println("@lry_test compile success")
 		if !ok {
 			return e.TypeErr(bs, nd.Exchange)
 		}
