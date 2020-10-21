@@ -10,6 +10,7 @@ import (
 	gopath "path"
 	"path/filepath"
 	"strings"
+	"time"
 
 	"github.com/ipfs/go-ipfs/core/commands/cmdenv"
 	"github.com/ipfs/go-ipfs/core/commands/e"
@@ -69,7 +70,7 @@ may also specify the level of compression by specifying '-l=<1-9>'.
 		if err != nil {
 			return err
 		}
-
+		preTime := time.Now().UnixNano()
 		p := path.New(req.Arguments[0])
 
 		file, err := api.Unixfs().Get(req.Context, p)
@@ -89,6 +90,9 @@ may also specify the level of compression by specifying '-l=<1-9>'.
 		if err != nil {
 			return err
 		}
+		endTime := time.Now().UnixNano()
+		totalTime := endTime - preTime
+		fmt.Printf("@lry_result ***** get file=%s  , time=%d *******", req.Arguments[0], totalTime)
 
 		return res.Emit(reader)
 	},
