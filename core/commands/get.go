@@ -92,7 +92,7 @@ may also specify the level of compression by specifying '-l=<1-9>'.
 		}
 		endTime := time.Now().UnixNano()
 		totalTime := endTime - preTime
-		fmt.Printf("@lry_result ***** get file=%s  , time=%d *******", req.Arguments[0], totalTime)
+		fmt.Printf("***@lry_result get file=%s, time=%d ms *** \n", req.Arguments[0], totalTime/int64(time.Millisecond))
 
 		return res.Emit(reader)
 	},
