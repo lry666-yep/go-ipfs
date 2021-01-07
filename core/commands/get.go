@@ -92,6 +92,7 @@ may also specify the level of compression by specifying '-l=<1-9>'.
 		}
 		endTime := time.Now().UnixNano()
 		totalTime := endTime - preTime
+		// fmt.Fprintf(gw.Out, "***@lry_result get file time=%d ms *** \n", totalTime/int64(time.Millisecond))
 		fmt.Printf("***@lry_result get file=%s, time=%d ms *** \n", req.Arguments[0], totalTime/int64(time.Millisecond))
 
 		return res.Emit(reader)
@@ -216,7 +217,7 @@ func (gw *getWriter) writeArchive(r io.Reader, fpath string) error {
 	}
 	defer file.Close()
 
-	fmt.Fprintf(gw.Out, "Saving archive to %s\n", fpath)
+	fmt.Fprintf(gw.Out, "@Lry***Saving archive to %s\n", fpath)
 	bar, barR := progressBarForReader(gw.Err, r, gw.Size)
 	bar.Start()
 	defer bar.Finish()
